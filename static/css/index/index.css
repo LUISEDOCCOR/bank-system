@@ -1,0 +1,34 @@
+#header{
+    height: 100vh;
+    background-color: var(--boulder-500);
+    color: #fff;
+}
+#technologies{
+    background-color: var(--boulder-600);
+    color: #fff;
+    height: 30vh;
+}
+.fa-brands,.fa-database{
+   color: var(--boulder-950);
+   transition: .3s;
+}
+.fa-brands:hover,.fa-database:hover{
+    transform: scale(1.2);
+}
+#about{
+    background-color: var(--boulder-500);
+    min-height: 30vh;
+    color: #fff;
+}
+#about p{
+    width: 50%;
+}
+footer{
+    height: 7vh;
+    background-color: var(--boulder-300);
+}
+@media screen and (max-width: 800px) {
+    #about p{
+        width: 90%;
+    }
+}

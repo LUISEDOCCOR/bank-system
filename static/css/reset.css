@@ -1,0 +1,15 @@
+:root{
+    --boulder-50: #f6f6f6;
+    --boulder-100: #e7e7e7;
+    --boulder-200: #d1d1d1;
+    --boulder-300: #b0b0b0;
+    --boulder-400: #7b7b7b;
+    --boulder-500: #6d6d6d;
+    --boulder-600: #5d5d5d;
+    --boulder-700: #4f4f4f;
+    --boulder-800: #454545;
+    --boulder-900: #3d3d3d;
+    --boulder-950: #262626;
+
+}
+*{font-family: monospace}

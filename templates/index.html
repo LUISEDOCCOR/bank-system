@@ -1,0 +1,53 @@
+{%extends 'main.html' %}
+{%block css_js%}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/index/index.css')}}">
+    <script src="https://kit.fontawesome.com/91c956bb82.js" crossorigin="anonymous"></script>
+{%endblock%}
+{%block title%}Home{%endblock%}
+<!-- header -->
+{%block header%}
+    <div id="header" class="d-flex flex-column justify-content-center align-items-center">
+        <h1 class="text-uppercase">bank system</h1>
+        <h2 class="fs-4">By Luis Eduardo Ocegueda Cortes</h2>
+        <div class="fs-3">
+            <span><a class="text-white" href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a></span>
+            <span><a class="text-white" href="#" target="_blank"><i class="fa-brands fa-github"></i></a></span>
+        </div>
+    </div>
+{%endblock%}
+{%block content%}
+<main>
+    <article id="technologies" class="d-flex flex-column justify-content-center align-items-center gap-4">
+        <h3 class="fst-italic text-uppercase">technologies used</h3>
+        <div class="fs-4 d-flex gap-5 flex-wrap justify-content-center px-5">
+            <div>
+                <span>Html</span>
+                <span><i class="fa-brands fa-html5"></i></span>
+            </div>
+            <div>
+                <span>Css</span>
+                <span><i class="fa-brands fa-css3-alt"></i></span>
+            </div>
+            <div>
+                <span>Js</span>
+                <span><i class="fa-brands fa-js"></i></span>
+            </div>
+            <div>
+                <span>Pyhton</span>
+                <span><i class="fa-brands fa-python"></i></span>
+            </div>
+            <div>
+                <span>Sql</span>
+                <span><i class="fa-solid fa-database"></i></span>
+            </div>
+        </div>
+    </article>
+    <article id="about" class="d-flex flex-column justify-content-center align-items-center gap-4 py-4">
+        <h3 class="fst-italic text-uppercase">about this project</h3>
+        <p class="fs-4">Welcome to "My Flask Project"! This web application, developed with Flask and other technologies such as HTML, CSS and JavaScript, aims to simulate the experience of a bank page. Explore key features, from making transfers and deposits to creating and maintaining users, even allowing you to have your own debit card within the app. Immerse yourself in the complete virtual banking experience with a passionate team behind every detail. We invite you to be part of this exciting online banking simulation!</p>
+    </article>
+</main>
+<footer class="d-flex justify-content-center align-items-center">
+    <p class="fs-4">&copy;{{date}}</p>
+</footer>
+{%endblock%}
