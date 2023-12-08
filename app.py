@@ -37,6 +37,24 @@ def signup ():
         msg = msg,
         mode = mode
     )
+
+@app.route('/login', methods = ['GET', 'POST'])
+def login ():
+    
+    msg = None
+    mode = None    
+    
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        msg, mode = db.verifyUser(email, password)
+    
+    return render_template(
+        'auth/login.html', 
+        msg = msg,
+        mode = mode
+    )   
+    
     
 #correr aplicación
 if __name__ == '__main__':
