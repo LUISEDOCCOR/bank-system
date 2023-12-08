@@ -33,7 +33,8 @@ def signup ():
         msg, mode = db.createUser(name, email, password)
     
     return render_template(
-        'auth/signup.html',
+        'auth/auth.html',
+        type = 'signup',
         msg = msg,
         mode = mode
     )
@@ -50,7 +51,8 @@ def login ():
         msg, mode = db.verifyUser(email, password)
     
     return render_template(
-        'auth/login.html', 
+        'auth/auth.html', 
+        type = 'login',
         msg = msg,
         mode = mode
     )   

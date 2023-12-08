@@ -1,16 +1,23 @@
 from io import open
 import pathlib
-import json  
+import json 
+import bcrypt 
+import base64
+from utils.verifyData import verfuDataUser 
 
 #obtener ruta de nuestro json 
-route = str(pathlib.Path().absolute()) + '/data.json'
-
+route = str(pathlib.Path().absolute()) + '/users.json'
 
 #obtener infomacion de nuestro json
 def getData ():
   with open(route, 'r') as file:
         data = json.load(file)
         return data
+
+#obtener id 
+def id():
+  data = getData()  
+  return  len(data) + 1
 
 #verificar email
 def verifyEmail (email):
@@ -26,10 +33,10 @@ def verifyEmail (email):
 #verificar contraseña
 def verifyPassword (email, password):
     users = getData()
-    print(getData())
     for user in users:
         if user["email"] == email:
-            if user["password"] == password:
+            currentPassword = base64.b64decode(user["password"])
+            if bcrypt.checkpw(password.encode('utf-8'), currentPassword):
                 return True
                 
             else:
@@ -39,36 +46,48 @@ def verifyPassword (email, password):
 #Crear de usuario => SignUp
 def createUser(name, email, password):
     try:
-        if verifyEmail(email):
+        if(verfuDataUser(name, email, password)):
             
-            user_data = {
-            'name': name,
-            'email': email,
-            'password': password
-            }
-            
-            data = getData()
-        
-            data.append(user_data)
-
-            with open(route, 'w') as file:
-                json.dump(data, file, indent=1)
+            if verifyEmail(email):
+                salt = bcrypt.gensalt()
+                passwordHash = bcrypt.hashpw(password.encode('utf-8'), salt)
+                passwordHash = base64.b64encode(passwordHash).decode('utf-8')
                 
-            return 'Account created successfully', 'success'   
-        
-        else: return 'That email is in use', 'danger'
+                user_data = {
+                    'id': id(),    
+                    'name': name,
+                    'email': email,
+                    'password': passwordHash
+                }
+                
+                data = getData()
+            
+                data.append(user_data)
+
+                with open(route, 'w') as file:
+                    json.dump(data, file, indent=1)
+                    
+                return 'Account created successfully', 'success'   
+            else:
+                return 'That email is in use', 'danger'
+            
+            
+        else: return 'The information provided is invalid, check the data entered', 'danger'
             
     except:
         return 'error in the system', 'warning'
 
 #verificacion de usuario => Login        
 def verifyUser (email, password):
-    print(verifyPassword(email, password))
     try:
-        if not(verifyEmail(email)) and verifyPassword(email, password):
-            return 'Successful login', 'success'
+        if verfuDataUser('login-name', email, password):
+            #se usa not porque esta funcion al no encontar un correo regresa false
+            if not(verifyEmail(email)) and verifyPassword(email, password):
+                return 'Successful login', 'success'
+            else:
+                return 'wrong password or username', 'danger'
         else:
-            return 'wrong password or username', 'danger'
+            return 'The information provided is invalid, check the data entered', 'danger'    
     except:
         return 'error in the system', 'warning'
 

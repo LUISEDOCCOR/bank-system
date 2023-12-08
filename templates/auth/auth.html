@@ -2,18 +2,24 @@
 {%block css_js%}
     <link rel="stylesheet" href="{{url_for('static', filename='css/forms/index.css')}}">
 {%endblock%}
-{%block title%}Login{%endblock%}
+{%block title%}SignUp{%endblock%}
 {%block content%}
-    <main class="d-flex flex-column justify-content-center align-items-center">
+    <main class="d-flex flex-column justify-content-center align-items-center gap-3">
         {%if msg%}
-        <div class="alert alert-{{mode}}  alert-dismissible fade show" role="alert">
+        <div class="alert alert-{{mode}}  alert-dismissible fade show mx-5" role="alert">
             {{msg}}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         {%endif%}
         <article id="signup-container" class="d-flex flex-column justify-content-center align-items-center gap-5 p-5">
-            <h1 class="text-white">Login</h1>
+            <h1 class="text-white">{{type}}</h1>
             <form action="" method="POST">
+                {% if type == 'signup' %}
+                <div class="d-flex flex-column justify-content-center align-items-center flex-column mb-4">
+                    <label class="fs-3 text-white mb-2" for="name">Name</label>
+                    <input type="text" id="name" name="name" required >
+                </div>
+                {%endif%}
                 <div class="d-flex flex-column justify-content-center align-items-center flex-column mb-4">
                     <label class="fs-3 text-white mb-2" for="email">Email</label>
                     <input type="email" id="email" name="email" required >
@@ -22,7 +28,7 @@
                     <label class="fs-3 text-white mb-2" for="password">Password</label>
                     <input type="password" id="password" name="password" required >
                 </div>
-                <input class="btn btn-success" type="submit" value="Login">
+                <input class="btn btn-success" type="submit" value="{{type}}">
             </form>
         </article>
     </main>
