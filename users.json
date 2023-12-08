@@ -2,7 +2,13 @@
  {
   "id": 1,
   "name": "Luis Eduardo",
-  "email": "luiseduardooceugeda@gmail.com",
-  "password": "JDJiJDEyJGtjZ3NtSWhPV0tsUFN4d1JrSmg2QnVDa1UwcGRSTkhNZzJOdkxaZ281UmpsaTFCUmNDbVJp"
+  "email": "luis@luis.com",
+  "password": "JDJiJDEyJC84OC5XejV2bXBnUDRNbmVvQmZ0Vk9yb2Y0TmVmZGZpbUxYTWxsWlAuZWdCaVplMmFKS3JP"
+ },
+ {
+  "id": 2,
+  "name": "Luis Eduardo",
+  "email": "luised@gmail.com1",
+  "password": "JDJiJDEyJE9Ia0JhTEUwV1lLWTlwUEJTSUFaYi5GYVpTNW13MGNVaWVEbWR1a21ad1EvdkR5ZUxqVnB1"
  }
 ]
