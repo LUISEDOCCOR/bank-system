@@ -1,8 +1,8 @@
 #importar librerias
 from flask import Flask, render_template, request, url_for
-from datetime import date
+import utils.server_date as server_date
+import utils.database as db
 
-today = date.today() 
 
 #crearmos nuestra aplicación 
 app = Flask(__name__)
@@ -11,7 +11,7 @@ app = Flask(__name__)
 def index ():
     return render_template(
         'index.html',
-        date = today.year
+        date = server_date.year()
     )
 
 @app.route('/home')
@@ -21,6 +21,23 @@ def home ():
         user = 'Luis',
     )
 
+@app.route('/signup', methods = ['GET', 'POST'])
+def signup ():
+    msg = None
+    mode = None    
+    
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        msg, mode = db.createUser(name, email, password)
+    
+    return render_template(
+        'auth/signup.html',
+        msg = msg,
+        mode = mode
+    )
+    
 #correr aplicación
 if __name__ == '__main__':
     app.run(debug=True, port=3000)
